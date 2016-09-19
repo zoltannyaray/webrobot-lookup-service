@@ -11,10 +11,11 @@ import com.dayswideawake.webrobot.lookup.messaging.model.LookupCreatedMessage;
 public class LookupDomainMessageTransformer {
 
 	public LookupCreatedMessage domainToCreatedMessage(Lookup lookup) {
+		Long lookupJobId = lookup.getLookupJobId();
 		Long lookupDefinitionId = lookup.getLookupDefinitionId();
 		Long lookupTime = lookup.getLookupTime().getTime();
 		List<String> selectedContent = lookup.getSelectedContent();
-		return new LookupCreatedMessage.Builder(lookupDefinitionId, lookupTime, selectedContent).build();
+		return new LookupCreatedMessage.Builder(lookupJobId, lookupDefinitionId, lookupTime, selectedContent).build();
 	}
 	
 }

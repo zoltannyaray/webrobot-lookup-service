@@ -12,6 +12,11 @@ public class SelectorCss extends Selector {
 		return cssSelector;
 	}
 
+	@Override
+	public String toString() {
+		return "SelectorCss [cssSelector=" + cssSelector + "]";
+	}
+
 	public static class Builder {
 		private String cssSelector;
 

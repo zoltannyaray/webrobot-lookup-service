@@ -36,12 +36,13 @@ public class LookupServiceImpl implements LookupService {
 	@Override
 	@Loggable
 	public Lookup doLookup(LookupJob lookupJob) {
+		Long lookupJobId = lookupJob.getId();
+		Long lookupDefinitionId = lookupJob.getLookupDefinitionId();
 		Site site = lookupJob.getSite();
 		Selector selector = lookupJob.getSelector();
 		List<String> selectedContent = contentSelectorService.selectContent(site, selector);
-		Long lookupDefinitionId = lookupJob.getLookupDefinitionId();
 		Date lookupTime = new Date();
-		Lookup lookup = new Lookup.Builder(lookupDefinitionId, lookupTime, selectedContent).build();
+		Lookup lookup = new Lookup.Builder(lookupJobId, lookupDefinitionId, lookupTime, selectedContent).build();
 		LookupEntity lookupEntity = domainEntityTransformer.domainToEntity(lookup);
 		lookupEntity = lookupRepository.save(lookupEntity);
 		lookup = domainEntityTransformer.entityToDomain(lookupEntity);

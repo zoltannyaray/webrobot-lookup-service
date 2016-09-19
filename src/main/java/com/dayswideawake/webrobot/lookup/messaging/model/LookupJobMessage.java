@@ -7,10 +7,16 @@ import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 @JsonDeserialize(builder = LookupJobMessage.Builder.class)
 public class LookupJobMessage {
 
+	private Long lookupJobId;
 	private Long lookupDefinitionId;
 
 	private LookupJobMessage(Builder builder) {
+		lookupJobId = builder.lookupJobId;
 		lookupDefinitionId = builder.lookupDefinitionId;
+	}
+
+	public Long getLookupJobId() {
+		return lookupJobId;
 	}
 
 	public Long getLookupDefinitionId() {
@@ -19,14 +25,16 @@ public class LookupJobMessage {
 
 	@Override
 	public String toString() {
-		return "LookupJobMessage [lookupDefinitionId=" + lookupDefinitionId + "]";
+		return "LookupJobMessage [lookupJobId=" + lookupJobId + ", lookupDefinitionId=" + lookupDefinitionId + "]";
 	}
 
 	public static class Builder {
+		private Long lookupJobId;
 		private Long lookupDefinitionId;
 
 		@JsonCreator
-		public Builder(@JsonProperty("lookupDefinitionId") Long lookupDefinitionId) {
+		public Builder(@JsonProperty("lookupJobId") Long lookupJobId, @JsonProperty("lookupDefinitionId") Long lookupDefinitionId) {
+			this.lookupJobId = lookupJobId;
 			this.lookupDefinitionId = lookupDefinitionId;
 		}
 

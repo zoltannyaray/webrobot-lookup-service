@@ -9,6 +9,7 @@ import com.dayswideawake.webrobot.lookup.backend.domain.LookupJob;
 import com.dayswideawake.webrobot.lookup.backend.domain.Selector;
 import com.dayswideawake.webrobot.lookup.backend.domain.Site;
 import com.dayswideawake.webrobot.lookup.backend.gateway.model.LookupDefinitionDetails;
+import com.dayswideawake.webrobot.lookup.messaging.model.LookupJobMessage;
 
 @Component
 public class LookupDefinitionGatewayDomainTransformer {
@@ -22,11 +23,12 @@ public class LookupDefinitionGatewayDomainTransformer {
 		this.selectorGatewayDomainTransformer = selectorGatewayDomainTransformer;
 	}
 
-	public LookupJob lookupDefinitionDetailsToLookupJob(LookupDefinitionDetails details) throws MalformedURLException {
+	public LookupJob lookupDefinitionDetailsToLookupJob(LookupJobMessage lookupJobMessage, LookupDefinitionDetails details) throws MalformedURLException {
+		Long lookupJobId = lookupJobMessage.getLookupJobId();
 		Long lookupDefinitionId = details.getId();
 		Site site = siteGatewayDomainTransformer.gatewayToDomain(details.getSiteDetails());
 		Selector selector = selectorGatewayDomainTransformer.gatewayToDomain(details.getSelectorDetails());
-		return new LookupJob.Builder(lookupDefinitionId, site, selector).build();
+		return new LookupJob.Builder(lookupJobId, lookupDefinitionId, site, selector).build();
 	}
 	
 }

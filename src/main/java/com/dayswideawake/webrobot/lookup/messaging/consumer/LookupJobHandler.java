@@ -35,7 +35,7 @@ public class LookupJobHandler {
 	public void handle(LookupJobMessage lookupJobMessage) throws MalformedURLException {
 		Long lookupDefinitionId = lookupJobMessage.getLookupDefinitionId();
 		LookupDefinitionDetails lookupDefinitionDetails = viewLookupDefinitionGateway.viewLookupDefinition(lookupDefinitionId);
-		LookupJob lookupJob = lookupDefinitionGatewayDomainTransformer.lookupDefinitionDetailsToLookupJob(lookupDefinitionDetails);
+		LookupJob lookupJob = lookupDefinitionGatewayDomainTransformer.lookupDefinitionDetailsToLookupJob(lookupJobMessage, lookupDefinitionDetails);
 		Lookup lookup = lookupService.doLookup(lookupJob);
 	}
 

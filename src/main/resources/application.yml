@@ -12,6 +12,11 @@ spring:
   output:
     ansi:
       enabled: always
+  cloud:
+    stream:
+      bindings:
+        new-lookups:
+          content-type: application/json
 logging:
   level:
     org:

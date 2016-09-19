@@ -41,6 +41,11 @@ public class LookupDefinitionDetails {
 		return intervalInSeconds;
 	}
 
+	@Override
+	public String toString() {
+		return "LookupDefinitionDetails [id=" + id + ", accountId=" + accountId + ", intervalInSeconds=" + intervalInSeconds + ", selectorDetails=" + selectorDetails + ", siteDetails=" + siteDetails + "]";
+	}
+
 	public static class Builder {
 		private Long id;
 		private Long accountId;
