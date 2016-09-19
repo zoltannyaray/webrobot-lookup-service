@@ -26,6 +26,11 @@ public class LookupCreatedMessage {
 		return selectedContent;
 	}
 
+	@Override
+	public String toString() {
+		return "LookupCreatedMessage [lookupDefinitionId=" + lookupDefinitionId + ", lookupTime=" + lookupTime + ", selectedContent=" + selectedContent + "]";
+	}
+
 	public static class Builder {
 		private Long lookupDefinitionId;
 		private Long lookupTime;

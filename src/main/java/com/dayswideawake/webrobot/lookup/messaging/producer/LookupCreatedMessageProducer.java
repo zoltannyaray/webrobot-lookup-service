@@ -6,6 +6,7 @@ import org.springframework.messaging.Message;
 import org.springframework.messaging.support.MessageBuilder;
 import org.springframework.stereotype.Component;
 
+import com.dayswideawake.webrobot.lookup.aop.annotation.Loggable;
 import com.dayswideawake.webrobot.lookup.backend.domain.Lookup;
 import com.dayswideawake.webrobot.lookup.backend.event.LookupCreatedEvent;
 import com.dayswideawake.webrobot.lookup.messaging.Channels;
@@ -25,7 +26,8 @@ public class LookupCreatedMessageProducer {
 	}
 	
 	@EventListener
-	private void onLookupCreated(LookupCreatedEvent lookupCreatedEvent) {
+	@Loggable
+	protected void onLookupCreated(LookupCreatedEvent lookupCreatedEvent) {
 		Lookup lookup = lookupCreatedEvent.getLookup();
 		LookupCreatedMessage payload = lookupDomainMessageTransformer.domainToCreatedMessage(lookup);
 		Message<LookupCreatedMessage> message = MessageBuilder.withPayload(payload).build();

@@ -7,6 +7,9 @@ public class LookupJob {
 	private Selector selector;
 
 	private LookupJob(Builder builder) {
+		lookupDefinitionId = builder.lookupDefinitionId;
+		site = builder.site;
+		selector = builder.selector;
 	}
 
 	public Long getLookupDefinitionId() {
@@ -22,6 +25,15 @@ public class LookupJob {
 	}
 
 	public static class Builder {
+		private Long lookupDefinitionId;
+		private Site site;
+		private Selector selector;
+
+		public Builder(Long lookupDefinitionId, Site site, Selector selector) {
+			this.lookupDefinitionId = lookupDefinitionId;
+			this.site = site;
+			this.selector = selector;
+		}
 
 		public LookupJob build() {
 			return new LookupJob(this);

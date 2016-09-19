@@ -28,6 +28,11 @@ public class Lookup {
 		return Collections.unmodifiableList(selectedContent);
 	}
 
+	@Override
+	public String toString() {
+		return "Lookup [lookupDefinitionId=" + lookupDefinitionId + ", lookupTime=" + lookupTime + ", selectedContent=" + selectedContent + "]";
+	}
+
 	public static class Builder {
 		private Long lookupDefinitionId;
 		private Date lookupTime;

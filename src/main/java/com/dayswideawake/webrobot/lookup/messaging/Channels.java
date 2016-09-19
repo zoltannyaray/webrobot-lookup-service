@@ -4,7 +4,9 @@ import org.springframework.cloud.stream.annotation.Input;
 import org.springframework.cloud.stream.annotation.Output;
 import org.springframework.messaging.MessageChannel;
 import org.springframework.messaging.SubscribableChannel;
+import org.springframework.stereotype.Component;
 
+@Component
 public interface Channels {
 
 	String CHANNEL_INPUT_LOOKUP_JOBS = "lookup-jobs";

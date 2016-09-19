@@ -5,9 +5,6 @@ import com.dayswideawake.webrobot.lookup.messaging.model.LookupJobMessage;
 
 public class LookupJobDomainMessageTransformer {
 
-	public LookupJob messageToDomain(LookupJobMessage message) {
-		return new LookupJob.Builder()
-				.build();
-	}
+	
 	
 }
