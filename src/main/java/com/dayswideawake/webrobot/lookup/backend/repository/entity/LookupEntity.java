@@ -12,6 +12,8 @@ import javax.persistence.Id;
 @Entity
 public class LookupEntity {
 
+	public static final int MAX_SELECTED_CONTENT_LENGTH = 10000; 
+	
 	@Id
 	@GeneratedValue
 	private Long id;
@@ -19,7 +21,7 @@ public class LookupEntity {
 	private Long lookupDefinitionId;
 	private Long lookupTime;
 	@ElementCollection
-	@Column(length = 3000)
+	@Column(length = MAX_SELECTED_CONTENT_LENGTH)
 	private List<String> selectedContent;
 
 	public LookupEntity() {
