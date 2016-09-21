@@ -14,7 +14,7 @@ import com.dayswideawake.webrobot.lookup.backend.domain.Site;
 
 @SpringBootTest
 @Test(groups=TestGroup.GROUP_INTEGRATION)
-public class ContentLoaderServiceTest extends AbstractTestNGSpringContextTests {
+public class ContentLoaderServiceIntegrationTest extends AbstractTestNGSpringContextTests {
 
 	@Autowired
 	private ContentLoaderService contentLoaderService;

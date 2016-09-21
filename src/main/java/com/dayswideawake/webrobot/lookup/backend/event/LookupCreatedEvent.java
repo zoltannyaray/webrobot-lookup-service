@@ -14,6 +14,11 @@ public class LookupCreatedEvent {
 		return lookup;
 	}
 
+	@Override
+	public String toString() {
+		return "LookupCreatedEvent [lookup=" + lookup + "]";
+	}
+
 	public static class Builder {
 		private Lookup lookup;
 

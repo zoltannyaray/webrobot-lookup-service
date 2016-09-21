@@ -2,6 +2,11 @@ package com.dayswideawake.webrobot.lookup.messaging.model;
 
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+
+@JsonDeserialize(builder=LookupCreatedMessage.Builder.class)
 public class LookupCreatedMessage {
 
 	private Long lookupJobId;
@@ -43,7 +48,8 @@ public class LookupCreatedMessage {
 		private Long lookupTime;
 		private List<String> selectedContent;
 
-		public Builder(Long lookupJobId, Long lookupDefinitionId, Long lookupTime, List<String> selectedContent) {
+		@JsonCreator
+		public Builder(@JsonProperty("lookupJobId") Long lookupJobId, @JsonProperty("lookupDefinitionId") Long lookupDefinitionId, @JsonProperty("lookupTime") Long lookupTime, @JsonProperty("selectedContent") List<String> selectedContent) {
 			this.lookupJobId = lookupJobId;
 			this.lookupDefinitionId = lookupDefinitionId;
 			this.lookupTime = lookupTime;
