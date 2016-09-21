@@ -7,7 +7,6 @@ import org.springframework.cloud.stream.annotation.StreamListener;
 import org.springframework.stereotype.Component;
 
 import com.dayswideawake.webrobot.lookup.aop.annotation.Loggable;
-import com.dayswideawake.webrobot.lookup.backend.domain.Lookup;
 import com.dayswideawake.webrobot.lookup.backend.domain.LookupJob;
 import com.dayswideawake.webrobot.lookup.backend.gateway.ViewLookupDefinitionGateway;
 import com.dayswideawake.webrobot.lookup.backend.gateway.model.LookupDefinitionDetails;
@@ -36,7 +35,7 @@ public class LookupJobHandler {
 		Long lookupDefinitionId = lookupJobMessage.getLookupDefinitionId();
 		LookupDefinitionDetails lookupDefinitionDetails = viewLookupDefinitionGateway.viewLookupDefinition(lookupDefinitionId);
 		LookupJob lookupJob = lookupDefinitionGatewayDomainTransformer.lookupDefinitionDetailsToLookupJob(lookupJobMessage, lookupDefinitionDetails);
-		Lookup lookup = lookupService.doLookup(lookupJob);
+		lookupService.doLookup(lookupJob);
 	}
 
 }
