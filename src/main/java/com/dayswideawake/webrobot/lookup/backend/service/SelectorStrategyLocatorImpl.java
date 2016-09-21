@@ -7,7 +7,6 @@ import org.springframework.core.ResolvableType;
 import org.springframework.stereotype.Service;
 
 import com.dayswideawake.webrobot.lookup.backend.domain.Selector;
-import com.dayswideawake.webrobot.lookup.backend.domain.SelectorStrategy;
 
 @Service
 public class SelectorStrategyLocatorImpl implements SelectorStrategyLocator {

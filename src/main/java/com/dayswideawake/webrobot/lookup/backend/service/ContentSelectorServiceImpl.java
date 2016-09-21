@@ -7,7 +7,6 @@ import org.springframework.stereotype.Service;
 
 import com.dayswideawake.webrobot.lookup.aop.annotation.Loggable;
 import com.dayswideawake.webrobot.lookup.backend.domain.Selector;
-import com.dayswideawake.webrobot.lookup.backend.domain.SelectorStrategy;
 import com.dayswideawake.webrobot.lookup.backend.domain.Site;
 
 @Service

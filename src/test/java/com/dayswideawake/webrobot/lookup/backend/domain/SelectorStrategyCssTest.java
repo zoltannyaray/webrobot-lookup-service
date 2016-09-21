@@ -8,6 +8,7 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 import com.dayswideawake.webrobot.lookup.TestGroup;
+import com.dayswideawake.webrobot.lookup.backend.service.SelectorStrategyCss;
 
 @Test(groups = TestGroup.GROUP_UNIT)
 public class SelectorStrategyCssTest {
