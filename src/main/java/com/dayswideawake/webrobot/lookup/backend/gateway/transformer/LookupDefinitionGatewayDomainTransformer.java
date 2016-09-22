@@ -25,7 +25,7 @@ public class LookupDefinitionGatewayDomainTransformer {
 
 	public LookupJob lookupDefinitionDetailsToLookupJob(LookupJobMessage lookupJobMessage, LookupDefinitionDetails details) throws MalformedURLException {
 		Long lookupJobId = lookupJobMessage.getLookupJobId();
-		Long lookupDefinitionId = details.getId();
+		Long lookupDefinitionId = details.getLookupDefinitionId();
 		Site site = siteGatewayDomainTransformer.gatewayToDomain(details.getSiteDetails());
 		Selector selector = selectorGatewayDomainTransformer.gatewayToDomain(details.getSelectorDetails());
 		return new LookupJob.Builder(lookupJobId, lookupDefinitionId, site, selector).build();

@@ -7,22 +7,22 @@ import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 @JsonDeserialize(builder = LookupDefinitionDetails.Builder.class)
 public class LookupDefinitionDetails {
 
-	private Long id;
+	private Long lookupDefinitionId;
 	private Long accountId;
 	private Long intervalInSeconds;
 	private SelectorDetails selectorDetails;
 	private SiteDetails siteDetails;
 
 	private LookupDefinitionDetails(Builder builder) {
-		id = builder.id;
+		lookupDefinitionId = builder.lookupDefinitionId;
 		accountId = builder.accountId;
 		selectorDetails = builder.selectorDetails;
 		siteDetails = builder.siteDetails;
 		intervalInSeconds = builder.intervalInSeconds;
 	}
 
-	public Long getId() {
-		return id;
+	public Long getLookupDefinitionId() {
+		return lookupDefinitionId;
 	}
 
 	public Long getAccountId() {
@@ -43,19 +43,19 @@ public class LookupDefinitionDetails {
 
 	@Override
 	public String toString() {
-		return "LookupDefinitionDetails [id=" + id + ", accountId=" + accountId + ", intervalInSeconds=" + intervalInSeconds + ", selectorDetails=" + selectorDetails + ", siteDetails=" + siteDetails + "]";
+		return "LookupDefinitionDetails [lookupDefinitionId=" + lookupDefinitionId + ", accountId=" + accountId + ", intervalInSeconds=" + intervalInSeconds + ", selectorDetails=" + selectorDetails + ", siteDetails=" + siteDetails + "]";
 	}
 
 	public static class Builder {
-		private Long id;
+		private Long lookupDefinitionId;
 		private Long accountId;
 		private Long intervalInSeconds;
 		private SelectorDetails selectorDetails;
 		private SiteDetails siteDetails;
 
 		@JsonCreator
-		public Builder(@JsonProperty("id") Long id, @JsonProperty("accountId") Long accountId, @JsonProperty("selector") SelectorDetails selectorDetails, @JsonProperty("site") SiteDetails siteDetails, @JsonProperty("intervalInSeconds") Long intervalInSeconds) {
-			this.id = id;
+		public Builder(@JsonProperty("lookupDefinitionId") Long lookupDefinitionId, @JsonProperty("accountId") Long accountId, @JsonProperty("selector") SelectorDetails selectorDetails, @JsonProperty("site") SiteDetails siteDetails, @JsonProperty("intervalInSeconds") Long intervalInSeconds) {
+			this.lookupDefinitionId = lookupDefinitionId;
 			this.accountId = accountId;
 			this.selectorDetails = selectorDetails;
 			this.siteDetails = siteDetails;
