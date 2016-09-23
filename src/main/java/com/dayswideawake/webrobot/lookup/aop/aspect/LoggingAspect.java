@@ -1,6 +1,7 @@
 package com.dayswideawake.webrobot.lookup.aop.aspect;
 
 import java.util.Arrays;
+import java.util.Optional;
 import java.util.logging.Logger;
 import java.util.stream.Collectors;
 
@@ -31,7 +32,7 @@ public class LoggingAspect {
 		String where = point.getSignature().getDeclaringType().getName() + "." + point.getSignature().getName();
 		String args = Arrays.asList(point.getArgs())
 				.stream()
-				.map(arg -> arg.toString())
+				.map(arg -> Optional.ofNullable(arg).map(nonNullArg -> nonNullArg.toString()).orElse("null"))
 				.collect(Collectors.joining(", "));
 		long elapsedTime = System.currentTimeMillis() - start;
 		LOGGER.info(String.format( ANSI_PURPLE + "%s(" + ANSI_GREEN + "%s" + ANSI_PURPLE + "): " + ANSI_CYAN + "%s (%s msec)" + ANSI_RESET, where, args, result, elapsedTime));

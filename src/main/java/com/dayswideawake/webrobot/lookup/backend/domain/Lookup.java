@@ -43,7 +43,7 @@ public class Lookup {
 
 	@Override
 	public String toString() {
-		return "Lookup [lookupJobId=" + lookupJobId + ", lookupDefinitionId=" + lookupDefinitionId + ", lookupTime=" + lookupTime + ", selectedContent=" + selectedContent + "]";
+		return "Lookup [id=" + id.orElse(null) + ", lookupJobId=" + lookupJobId + ", lookupDefinitionId=" + lookupDefinitionId + ", lookupTime=" + lookupTime + ", selectedContent=" + selectedContent + "]";
 	}
 
 	public static class Builder {

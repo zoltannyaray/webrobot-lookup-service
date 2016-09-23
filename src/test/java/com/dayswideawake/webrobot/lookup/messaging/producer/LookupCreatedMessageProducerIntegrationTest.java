@@ -67,7 +67,7 @@ public class LookupCreatedMessageProducerIntegrationTest extends AbstractTestNGS
 		Long lookupDefinitionId = 2L;
 		Date lookupTime = new Date();
 		List<String> selectedContent = Arrays.asList("content1", "content2");
-		Lookup lookup = new Lookup.Builder(lookupJobId, lookupDefinitionId, lookupTime, selectedContent).build();
+		Lookup lookup = new Lookup.Builder(lookupJobId, lookupDefinitionId, lookupTime, selectedContent).withId(1L).build();
 		return new LookupCreatedEvent.Builder(lookup).build();
 	}
 	

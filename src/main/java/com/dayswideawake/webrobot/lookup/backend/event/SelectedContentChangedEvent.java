@@ -2,12 +2,12 @@ package com.dayswideawake.webrobot.lookup.backend.event;
 
 import com.dayswideawake.webrobot.lookup.backend.domain.Lookup;
 
-public class LookupContentChangedEvent {
+public class SelectedContentChangedEvent {
 
 	private Lookup previousLookup;
 	private Lookup newLookup;
 
-	private LookupContentChangedEvent(Builder builder) {
+	private SelectedContentChangedEvent(Builder builder) {
 		previousLookup = builder.previousLookup;
 		newLookup = builder.newLookup;
 	}
@@ -29,8 +29,8 @@ public class LookupContentChangedEvent {
 			this.newLookup = newLookup;
 		}
 
-		public LookupContentChangedEvent build() {
-			return new LookupContentChangedEvent(this);
+		public SelectedContentChangedEvent build() {
+			return new SelectedContentChangedEvent(this);
 		}
 
 	}
