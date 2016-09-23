@@ -2,8 +2,12 @@ package com.dayswideawake.webrobot.lookup.backend.service;
 
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
+import java.util.Optional;
 
 import javax.transaction.Transactional;
 
@@ -99,7 +103,51 @@ public class LookupServiceImplIntegrationTest extends AbstractTransactionalTestN
 		Assert.assertTrue(capturedLookup.getLookupTime().after(tenSecondsAgo));
 		Assert.assertEquals(capturedLookup.getSelectedContent().size(), 1);
 	}
+	
+	public void getPreviousLookupShouldReturnEmptyOnNoOtherLookup() {
+		Lookup lookup = createTestLookup(1L, new Date());
+		Long lookupId = lookup.getId().get();
+		Long lookupDefinitionId = lookup.getLookupDefinitionId();
+		Optional<Lookup> previousLookup = lookupService.getPreviousLookup(lookupId, lookupDefinitionId);
+		Assert.assertNull(previousLookup.orElse(null));
+	}
+	
+	public void getPreviousLookupShouldReturnEmptyOnNewerLookups() {
+		List<Lookup> lookups = new ArrayList<>();
+		for (int i = 0; i < 5; i++) {
+			lookups.add(createTestLookup(1L, new Date()));
+		}
+		Optional<Lookup> previousLookup = lookupService.getPreviousLookup(lookups.get(0).getId().get(), lookups.get(0).getLookupDefinitionId());
+		Assert.assertNull(previousLookup.orElse(null));
+	}
+	
+	public void getPreviousLookupShouldReturnEmptyOnNoMatchingLookup() {
+		List<Lookup> lookups = new ArrayList<>();
+		for (int i = 0; i < 5; i++) {
+			lookups.add(createTestLookup(Long.valueOf(i), new Date()));
+		}
+		Optional<Lookup> previousLookup = lookupService.getPreviousLookup(lookups.get(4).getId().get(), lookups.get(4).getLookupDefinitionId());
+		Assert.assertNull(previousLookup.orElse(null));
+	}
+	
+	public void getPreviousLookupShouldReturnPreviousLookup() {
+		List<Lookup> lookups = new ArrayList<>();
+		for (int i = 0; i < 6; i++) {
+			lookups.add(createTestLookup(Long.valueOf(i % 3), new Date()));
+		}
+		Optional<Lookup> previousLookup = lookupService.getPreviousLookup(lookups.get(4).getId().get(), lookups.get(4).getLookupDefinitionId());
+		Assert.assertNotNull(previousLookup.orElse(null));
+		Assert.assertEquals(previousLookup.get().getId(), lookups.get(1).getId());
+	} 
 
+	private Lookup createTestLookup(Long lookupDefinitionId, Date lookupTime) {
+		Long lookupJobId = 1L;
+		List<String> selectedContent = Arrays.asList("content1", "content2");
+		LookupEntity lookupEntity = new LookupEntity.Builder(lookupJobId, lookupDefinitionId, lookupTime.getTime(), selectedContent).build();
+		lookupEntity = lookupRepository.save(lookupEntity);
+		return domainEntityTransformer.entityToDomain(lookupEntity);
+	}
+	
 	private LookupJob getTestLookupJob() throws MalformedURLException {
 		Long lookupJobId = 1L;
 		Long lookupDefinitionId = 2L;

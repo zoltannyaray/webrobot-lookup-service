@@ -20,11 +20,12 @@ public class LookupDomainEntityTransformer {
 	}
 
 	public Lookup entityToDomain(LookupEntity lookupEntity) {
+		Long id = lookupEntity.getId();
 		Long lookupJobId = lookupEntity.getLookupJobId();
 		Long lookupDefinitionId = lookupEntity.getLookupDefinitionId();
 		Date lookupTime = new Date(lookupEntity.getLookupTime());
 		List<String> selectedContent = lookupEntity.getSelectedContent();
-		return new Lookup.Builder(lookupJobId, lookupDefinitionId, lookupTime, selectedContent).build();
+		return new Lookup.Builder(lookupJobId, lookupDefinitionId, lookupTime, selectedContent).withId(id).build();
 	}
 	
 }
